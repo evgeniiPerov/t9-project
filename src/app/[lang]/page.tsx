@@ -1,6 +1,6 @@
 import locale from '@/locale/content/content'
 import { AvailableLocales } from '@/types/types'
-import { DigitalButtons } from '@/components/digital-buttons/digital-buttons'
+import { DigitalContainer } from '@/components/digital/digital-container'
 
 function Page({ params }: { params: { lang: AvailableLocales } }) {
     return (
@@ -13,7 +13,7 @@ function Page({ params }: { params: { lang: AvailableLocales } }) {
                         </h1>
                         <p className="lg:w-2/3 mx-auto leading-relaxed text-base">{locale[params.lang]?.content}</p>
                     </div>
-                    <DigitalButtons />
+                    <DigitalContainer />
                 </div>
             </section>
         </>

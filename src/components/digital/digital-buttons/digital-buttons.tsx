@@ -1,33 +1,14 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { genCombinationAction } from '@/app/actions/t9.action'
-import { useState } from 'react'
-import { Bubbles } from '@/components/digital-buttons/bubbles'
 
-export const DigitalButtons = () => {
-    const [inputString, setInputString] = useState<string>('')
-    const [messages, setMessages] = useState<string[] | null>(null)
+interface DigitalButtonsProps {
+    handleClick: (digit: string) => Promise<void>
+}
 
-    const handleClick = async (digit: string) => {
-        let newInputString
-
-        // Reset the inputString if '1' or '0' is pressed
-        if (digit === '1' || digit === '0') {
-            newInputString = ''
-            setMessages(null)
-        } else {
-            newInputString = inputString + digit
-        }
-
-        setInputString(newInputString)
-        const combined = await genCombinationAction(newInputString)
-        setMessages(combined)
-    }
-
+export const DigitalButtons = ({ handleClick }: DigitalButtonsProps) => {
     return (
-        <div className="lg:w-1/2 md:w-2/3 mx-auto">
+        <div className="">
             <div className="flex flex-col w-full gap-3 justify-center items-center">
-                {messages !== null && <Bubbles messages={messages} />}
                 <div className="flex gap-4 justify-center items-center">
                     <Button
                         onClick={() => handleClick('1')}
@@ -73,13 +54,13 @@ export const DigitalButtons = () => {
                         onClick={() => handleClick('7')}
                         className={'flex flex-col p-7 button'}
                     >
-                        7 <span>m n o</span>
+                        7 <span>p q r s</span>
                     </Button>
                     <Button
                         onClick={() => handleClick('8')}
                         className={'flex flex-col p-7 button'}
                     >
-                        8 <span>p q r s</span>
+                        8 <span>t u v</span>
                     </Button>
                     <Button
                         onClick={() => handleClick('9')}
