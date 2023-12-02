@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { DigitalButtons } from '@/components/digital/digital-buttons/digital-buttons'
 import { Bubbles } from '@/components/digital/digital-buttons/bubbles'
 import { genCombinationAction } from '@/app/actions/t9.action'
+import { Screen } from '@/components/digital/screen'
 
 export const DigitalContainer = () => {
     const [inputString, setInputString] = useState<string>('')
@@ -17,25 +18,32 @@ export const DigitalContainer = () => {
         setMessages([])
     }
 
-    const handleClick = async (digit: string) => {
-        let newInputString
+    const onReset = () => {
+        setInputString('')
+        setDisplayedWord('')
+        setMessages([])
+    }
 
-        if (digit === '1' || digit === '0') {
-            newInputString = ''
-            setMessages([])
+    const handleClick = async (digit: string) => {
+        let newInputString = inputString
+
+        if (digit === '0' || digit === '1') {
+            setDisplayedWord(displayedWord + ' ')
         } else {
             newInputString = inputString + digit
+            setInputString(newInputString)
             const combined = await genCombinationAction(newInputString)
             setMessages(combined)
         }
-
-        setInputString(newInputString)
     }
 
     return (
         <div className={'lg:w-1/2 md:w-2/3 mx-auto flex flex-col gap-4'}>
-            {displayedWord && <div className="displayed-word">{displayedWord}</div>}
-            <DigitalButtons handleClick={handleClick} />
+            <Screen displayedWord={displayedWord} />
+            <DigitalButtons
+                handleClick={handleClick}
+                onReset={onReset}
+            />
             <Bubbles
                 messages={messages}
                 onBubbleClick={onBubbleClick}

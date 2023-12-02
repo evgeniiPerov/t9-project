@@ -1,11 +1,13 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import { Space } from 'lucide-react'
 
 interface DigitalButtonsProps {
     handleClick: (digit: string) => Promise<void>
+    onReset: () => void
 }
 
-export const DigitalButtons = ({ handleClick }: DigitalButtonsProps) => {
+export const DigitalButtons = ({ handleClick, onReset }: DigitalButtonsProps) => {
     return (
         <div className="">
             <div className="flex flex-col w-full gap-3 justify-center items-center">
@@ -69,12 +71,21 @@ export const DigitalButtons = ({ handleClick }: DigitalButtonsProps) => {
                         9 <span>w x y z</span>
                     </Button>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex gap-4 justify-center items-center">
                     <Button
                         onClick={() => handleClick('0')}
                         className={'flex flex-col p-7 button'}
                     >
-                        0 <span>&apos; &apos;</span>
+                        0
+                        <span>
+                            <Space />
+                        </span>
+                    </Button>
+                    <Button
+                        onClick={onReset}
+                        className={'flex flex-col p-7 button'}
+                    >
+                        Reset
                     </Button>
                 </div>
             </div>
