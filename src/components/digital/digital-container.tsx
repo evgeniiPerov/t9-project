@@ -33,8 +33,8 @@ export const DigitalContainer = () => {
     }
 
     return (
-        <div className={'lg:w-1/2 md:w-2/3 mx-auto'}>
-            {displayedWord && <div className="displayed-word mt-3">{displayedWord}</div>}
+        <div className={'lg:w-1/2 md:w-2/3 mx-auto flex flex-col gap-4'}>
+            {displayedWord && <div className="displayed-word">{displayedWord}</div>}
             <DigitalButtons handleClick={handleClick} />
             <Bubbles
                 messages={messages}
