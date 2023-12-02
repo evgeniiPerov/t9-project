@@ -5,9 +5,10 @@ import { Space } from 'lucide-react'
 interface DigitalButtonsProps {
     handleClick: (digit: string) => Promise<void>
     onReset: () => void
+    onDeleteLastWord: () => void
 }
 
-export const DigitalButtons = ({ handleClick, onReset }: DigitalButtonsProps) => {
+export const DigitalButtons = ({ handleClick, onReset, onDeleteLastWord }: DigitalButtonsProps) => {
     return (
         <div className="">
             <div className="flex flex-col w-full gap-3 justify-center items-center">
@@ -72,6 +73,13 @@ export const DigitalButtons = ({ handleClick, onReset }: DigitalButtonsProps) =>
                     </Button>
                 </div>
                 <div className="flex gap-4 justify-center items-center">
+                    <Button
+                        onClick={onDeleteLastWord}
+                        className={'flex flex-col p-7 button'}
+                        variant={'destructive'}
+                    >
+                        DELETE
+                    </Button>
                     <Button
                         onClick={() => handleClick('0')}
                         className={'flex flex-col p-7 button'}

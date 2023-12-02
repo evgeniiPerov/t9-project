@@ -9,6 +9,7 @@ export const DigitalContainer = () => {
     const [inputString, setInputString] = useState<string>('')
     const [displayedWord, setDisplayedWord] = useState<string>('')
     const [messages, setMessages] = useState<string[]>([])
+    const [lastDeletedChar, setLastDeletedChar] = useState('')
 
     const onBubbleClick = (word: string) => {
         const newDisplayedWord = displayedWord ? displayedWord + ' ' + word : word
@@ -24,6 +25,20 @@ export const DigitalContainer = () => {
         setMessages([])
     }
 
+    const onDeleteLastWord = () => {
+        if (displayedWord.length === 0) return
+
+        if (lastDeletedChar === ' ' && displayedWord[displayedWord.length - 1] === ' ') {
+            const words = displayedWord.trim().split(' ')
+            words.pop()
+            setDisplayedWord(words.join(' ') + (words.length > 0 ? ' ' : ''))
+        } else {
+            const newDisplayedWord = displayedWord.slice(0, -1)
+            setDisplayedWord(newDisplayedWord)
+            setLastDeletedChar(displayedWord[displayedWord.length - 1])
+        }
+    }
+
     const handleClick = async (digit: string) => {
         let newInputString = inputString
 
@@ -34,6 +49,7 @@ export const DigitalContainer = () => {
             setInputString(newInputString)
             const combined = await genCombinationAction(newInputString)
             setMessages(combined)
+            setLastDeletedChar('')
         }
     }
 
@@ -43,6 +59,7 @@ export const DigitalContainer = () => {
             <DigitalButtons
                 handleClick={handleClick}
                 onReset={onReset}
+                onDeleteLastWord={onDeleteLastWord}
             />
             <Bubbles
                 messages={messages}
