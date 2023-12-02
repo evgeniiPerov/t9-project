@@ -22,8 +22,8 @@ export const DigitalButtons = () => {
         setInputString(newInputString)
         const combined = await genCombinationAction(newInputString)
         setMessages(combined)
-        console.log(messages)
     }
+
     return (
         <div className="lg:w-1/2 md:w-2/3 mx-auto">
             <div className="flex flex-col w-full gap-3 justify-center items-center">

@@ -18,7 +18,6 @@ export default function ServerError({ params }: { params: { lang: AvailableLocal
                         href={`/${params.lang}`}
                         className={'text-red-500 text-lg'}
                     >
-                        {' '}
                         {locale[params.lang]?.homeUrl}
                     </Link>
                 </span>
