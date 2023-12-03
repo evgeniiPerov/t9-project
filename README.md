@@ -1,10 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 ## Setup
-
-### Requirements
-
-**Delete the .git folder after cloning the project !!!**
-
 Node >=18.17.0
 
 `yarn install` install deps
